@@ -57,6 +57,7 @@ export const ActionButton = React.forwardRef<
           <TooltipTrigger asChild>
             <button
               ref={buttonRef}
+              aria-label={typeof tooltip === "string" ? tooltip : undefined}
               // @see https://github.com/radix-ui/primitives/issues/2248#issuecomment-2147056904
               onFocusCapture={stopPropagation}
               className={cn(
