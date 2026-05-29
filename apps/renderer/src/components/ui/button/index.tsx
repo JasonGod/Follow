@@ -50,6 +50,8 @@ export const ActionButton = React.forwardRef<
     const buttonRef = React.useRef<HTMLButtonElement>(null)
     React.useImperativeHandle(ref, () => buttonRef.current!)
 
+    const derivedAriaLabel = typeof tooltip === "string" ? tooltip : undefined
+
     return (
       <>
         {shortcut && <HotKeyTrigger shortcut={shortcut} fn={() => buttonRef.current?.click()} />}
@@ -69,6 +71,7 @@ export const ActionButton = React.forwardRef<
               )}
               type="button"
               disabled={disabled}
+              aria-label={derivedAriaLabel}
               {...rest}
             >
               {typeof icon === "function"
