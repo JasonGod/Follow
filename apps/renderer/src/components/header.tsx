@@ -21,7 +21,7 @@ const useMotionValueToState = (value: MotionValue<number>) => {
 
 export function Header() {
   const present = usePresentUserProfileModal()
-  const { t } = useTranslation("external")
+  const { t } = useTranslation(["external", "app"])
 
   const { scrollY } = useScroll()
   const scrollYState = useMotionValueToState(scrollY)
@@ -57,8 +57,9 @@ export function Header() {
             </div>
           </div>
           <button
-            className="cursor-pointer"
+            className="cursor-pointer rounded-full focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:outline-none"
             type="button"
+            aria-label={t("app:words.user")}
             onClick={() => {
               present(whoami()?.id)
             }}
