@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
+import { useTranslation } from "react-i18next"
 
 import { useUISettingKey } from "~/atoms/settings/ui"
 import { ElECTRON_CUSTOM_TITLEBAR_HEIGHT } from "~/constants"
@@ -11,6 +12,7 @@ export const Titlebar = () => {
   })
 
   const feedColWidth = useUISettingKey("feedColWidth")
+  const { t } = useTranslation()
 
   return (
     <div
@@ -23,6 +25,7 @@ export const Titlebar = () => {
       <button
         className="no-drag-region pointer-events-auto flex h-full w-[50px] items-center justify-center duration-200 hover:bg-theme-item-active"
         type="button"
+        aria-label={t("words.minimize")}
         onClick={() => {
           tipcClient?.windowAction({ action: "minimize" })
         }}
@@ -33,6 +36,7 @@ export const Titlebar = () => {
       <button
         type="button"
         className="no-drag-region pointer-events-auto flex h-full w-[50px] items-center justify-center duration-200 hover:bg-theme-item-active"
+        aria-label={isMaximized ? t("words.restore") : t("words.maximize")}
         onClick={async () => {
           await tipcClient?.windowAction({ action: "maximum" })
           refetch()
@@ -48,6 +52,7 @@ export const Titlebar = () => {
       <button
         type="button"
         className="no-drag-region pointer-events-auto flex h-full w-[50px] items-center justify-center duration-200 hover:bg-red-500 hover:!text-white"
+        aria-label={t("close")}
         onClick={() => {
           tipcClient?.windowAction({ action: "close" })
         }}
