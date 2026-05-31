@@ -69,6 +69,9 @@ export const ActionButton = React.forwardRef<
               )}
               type="button"
               disabled={disabled}
+              aria-label={
+                rest["aria-label"] || (typeof tooltip === "string" ? tooltip : undefined)
+              }
               {...rest}
             >
               {typeof icon === "function"
