@@ -1,0 +1,3 @@
+## 2024-11-25 - [Accessibility and Tooltips for Windows Titlebar]
+**Learning:** For custom Electron Titlebar components, icon-only buttons require explicit `aria-label` attributes and Radix Tooltips to be accessible. Since Titlebars often use `overflow: hidden`, `TooltipPortal` is necessary to prevent clipping. Additionally, custom focus indicators (e.g., `focus-visible:ring-inset`) are essential as the global focus outline is often disabled.
+**Action:** Use `Tooltip`, `TooltipPortal`, `aria-label`, and `focus-visible:ring-inset` when implementing or enhancing custom window controls or other edge-of-screen icon buttons.
