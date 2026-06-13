@@ -52,7 +52,6 @@ function App() {
             "drag-region fixed inset-x-0 top-0 h-12 shrink-0",
             windowsElectron && "pointer-events-none z-[9999]",
           )}
-          aria-hidden
         >
           {windowsElectron && <Titlebar />}
         </div>
