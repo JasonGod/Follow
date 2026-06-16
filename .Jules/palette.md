@@ -1,0 +1,3 @@
+## 2024-05-23 - [Electron Titlebar Accessibility]
+**Learning:** Custom Titlebars in Electron apps often lack standard accessibility features like ARIA labels and tooltips. Additionally, global layout containers might use `aria-hidden` to simplify the accessibility tree, which inadvertently hides these critical window controls from screen readers.
+**Action:** When implementing custom Titlebars, explicitly add localized `aria-label` attributes and tooltips to window control buttons. Ensure the container's `aria-hidden` attribute correctly reflects the presence of interactive controls (e.g., `aria-hidden={!isCustomTitlebarActive}`).
