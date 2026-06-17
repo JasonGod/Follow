@@ -1,0 +1,3 @@
+## 2024-10-18 - Enhance Titlebar accessibility and UX
+**Learning:** Custom Electron titlebars often lack standard accessibility features like ARIA labels and tooltips. When components have `overflow: hidden` (like the Titlebar), Radix tooltips must be rendered via `TooltipPortal` to avoid being clipped. Standard focus indicators should be added since the default outline is globally disabled.
+**Action:** Always use `aria-label` for icon-only buttons in titlebars, use `TooltipPortal` for tooltips in constrained containers, and implement custom focus-visible rings (`focus-visible:ring-inset` for edge buttons).
