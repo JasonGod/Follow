@@ -1,0 +1,3 @@
+## 2024-06-18 - [Accessibility and Interaction in Custom Titlebars]
+**Learning:** In custom Electron titlebars that use `overflow: hidden` and Radix-based components, tooltips can be clipped unless wrapped in a `TooltipPortal`. Additionally, interactive buttons in the titlebar area should use `onFocusCapture={stopPropagation}` to prevent focus events from being captured by parent drag regions or causing unexpected tooltip behavior.
+**Action:** Always use `TooltipPortal` for tooltips in containers with constrained overflow. Add `aria-label` and `focus-visible:ring-inset` to titlebar window controls to ensure they are accessible to screen readers and keyboard users.
