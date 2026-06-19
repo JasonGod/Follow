@@ -1,0 +1,3 @@
+## 2024-09-20 - [A11y/UX] Enhanced Titlebar and ActionButton Accessibility
+**Learning:** Icon-only buttons in custom titlebars (and elsewhere) are often missing tooltips and ARIA labels, making them inaccessible to screen readers and confusing for users. Additionally, when using Radix tooltips in containers with `overflow: hidden`, `TooltipPortal` is essential to prevent clipping. Focus indicators for these buttons should use `ring-inset` to stay within the window boundaries.
+**Action:** Always provide `aria-label` and `Tooltip` for icon-only buttons. In `ActionButton`, automate `aria-label` derivation from the `tooltip` prop. Use `TooltipPortal` for tooltips in tight or overflow-hidden layouts. Use `focus-visible:ring-inset` for edge-of-screen controls.
