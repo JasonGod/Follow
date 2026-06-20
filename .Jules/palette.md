@@ -1,0 +1,3 @@
+## 2026-06-20 - Custom Titlebar Accessibility
+**Learning:** In Electron apps with custom titlebars, window controls (Minimize, Maximize, Close) are often implemented as icon-only buttons that are completely invisible to screen readers and lack visual cues like tooltips. Furthermore, when using Radix UI Tooltips in these regions (which often have `overflow: hidden`), `TooltipPortal` is essential to prevent the tooltip from being clipped.
+**Action:** Always add `aria-label` to custom window control buttons and wrap them in `Tooltip` with `TooltipPortal`. Ensure standard localized terms are used (e.g., "向下还原" for Restore in zh-CN).
