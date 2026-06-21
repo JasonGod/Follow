@@ -1,0 +1,3 @@
+## 2024-10-18 - [Titlebar Accessibility and Micro-UX]
+**Learning:** Custom titlebars in Electron apps often neglect accessibility. Key improvements include: 1. Ensuring the container is NOT `aria-hidden` when active. 2. Adding `aria-label` to icon-only controls. 3. Providing tooltips for visual guidance. 4. Using `TooltipPortal` when the parent has `overflow: hidden`. 5. Adding `focus-visible` indicators for keyboard navigation.
+**Action:** Always verify that custom titlebars are accessible by checking `aria-hidden` on parents and adding necessary labels and tooltips to interactive elements. Use `focus-visible:ring-inset` for buttons at window edges.
