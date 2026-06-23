@@ -1,0 +1,3 @@
+## 2024-06-23 - Accessible Icon Buttons and Focus States
+**Learning:** Icon-only buttons (like those using the `ActionButton` component) are frequently missing `aria-label` attributes, making them inaccessible to screen reader users despite having visual tooltips. Furthermore, the application disables the default focus outline globally, necessitating manual focus indicators for keyboard navigation.
+**Action:** Automatically derive `aria-label` from the `tooltip` prop when it's a string, and implement a consistent focus ring using `focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:outline-none` on interactive elements.
