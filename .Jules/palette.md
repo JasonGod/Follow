@@ -1,0 +1,3 @@
+## 2026-06-24 - Custom Titlebar Accessibility and Focus Management
+**Learning:** In custom Electron titlebars that use `overflow: hidden` to clip background effects, Radix Tooltips will be clipped unless wrapped in `TooltipPortal`. Additionally, when the global focus outline is disabled, buttons at the very edge of the window (like window controls) should use `ring-inset` for focus indicators to ensure they remain visible and don't expand the layout.
+**Action:** Always use `TooltipPortal` for tooltips in containers with `overflow: hidden` and use `focus-visible:ring-inset` for edge-aligned interactive elements.
