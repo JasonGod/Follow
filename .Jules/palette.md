@@ -1,0 +1,3 @@
+## 2024-06-25 - [Accessibility for Custom Titlebars]
+**Learning:** Custom Electron titlebars are often hidden from screen readers via `aria-hidden` on their container. When interactive controls like minimize/maximize are present, this attribute must be dynamic to ensure accessibility. Additionally, these buttons need localized tooltips and `aria-label` attributes as they are icon-only.
+**Action:** Always check the parent container of custom titlebars for `aria-hidden` and ensure it reflects the actual visibility and interactivity of the controls. Provide tooltips and ARIA labels for all window control buttons.
