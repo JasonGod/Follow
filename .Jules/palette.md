@@ -1,0 +1,3 @@
+## 2025-05-14 - [Accessible and Informative Custom Titlebar]
+**Learning:** Icon-only buttons in custom Electron titlebars lack accessible names for screen readers and visual hints for mouse users. When the titlebar container uses `overflow-hidden` (common for window drag regions), Radix Tooltips will be clipped unless wrapped in a `TooltipPortal`. Additionally, standard focus rings can be cut off at the window edge; `focus-visible:ring-inset` keeps them visible.
+**Action:** Always provide `aria-label` and `Tooltip` (with `TooltipPortal`) for titlebar actions. Use `focus-visible:ring-inset` for buttons at the layout boundaries.
