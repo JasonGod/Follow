@@ -1,0 +1,3 @@
+## 2025-01-24 - [Titlebar Accessibility & Tooltips]
+**Learning:** When adding tooltips to components with `overflow: hidden` (like the app Titlebar), use `TooltipPortal` to prevent the tooltip from being clipped. Additionally, for icon-only window controls, providing localized `aria-label` attributes and `focus-visible:ring-inset` styles ensures better accessibility and keyboard navigation. Using `onFocusCapture={stopPropagation}` helps manage focus interactions with Radix UI tooltips.
+**Action:** Always use `TooltipPortal` for tooltips in constrained containers and ensure icon-only buttons have localized ARIA labels and appropriate focus indicators.
