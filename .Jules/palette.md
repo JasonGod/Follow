@@ -1,0 +1,3 @@
+## 2024-10-15 - [Titlebar Accessibility and UX]
+**Learning:** Custom titlebars in Electron apps often lack standard accessibility features (ARIA labels, tooltips) and keyboard support. When `overflow: hidden` is used on the titlebar container, tooltips will be clipped unless `TooltipPortal` is used. Additionally, the standard focus outline is often disabled globally, requiring custom `focus-visible` styles.
+**Action:** Use `TooltipPortal` for tooltips in clipped containers, add localized `aria-label` to icon-only buttons, and provide custom focus indicators using `focus-visible:ring-inset` for edge-aligned buttons. Ensure `aria-hidden` is correctly managed for screen reader visibility.
