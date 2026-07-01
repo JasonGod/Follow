@@ -1,0 +1,3 @@
+## 2024-10-10 - [Windows Titlebar Accessibility & Tooltips]
+**Learning:** Custom Electron titlebars often omit standard accessibility features. In this app, the titlebar was hidden from screen readers, and buttons lacked labels and tooltips. Additionally, when using Radix Tooltips inside a container with `overflow: hidden`, `TooltipPortal` is essential to prevent clipping. Focus management with `onFocusCapture={stopPropagation}` is also needed to handle Radix tooltip focus behavior on interactive elements.
+**Action:** Always verify `aria-hidden` on parent containers of custom UI. Use `TooltipPortal` for tooltips in constrained containers. Ensure icon-only buttons have localized `aria-label` and `Tooltip`.
