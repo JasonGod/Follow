@@ -1,0 +1,3 @@
+## 2024-07-03 - Titlebar Accessibility and Tooltips
+**Learning:** Custom Electron titlebars often lack standard accessibility features. Icon-only window controls require explicit `aria-label` and tooltips for better UX. When these controls are inside a container with `overflow: hidden` (common for titlebars), Radix `TooltipPortal` is necessary to ensure tooltips are not clipped. Also, `aria-hidden` on the titlebar container must be conditionally applied so screen readers can access it on supported platforms (Windows).
+**Action:** Always add localized `aria-label` and tooltips to titlebar buttons. Use `TooltipPortal` for any tooltips in constrained layouts. Ensure parent containers don't accidentally hide interactive elements from screen readers.
