@@ -1,0 +1,3 @@
+## 2026-07-05 - [Accessibility & Tooltips for Windows Titlebar]
+**Learning:** In Windows Electron builds, the custom titlebar is often icon-only and lacks standard tooltips and ARIA labels. Additionally, a global `aria-hidden` on the drag-region container can inadvertently hide these controls from screen readers even if they are rendered.
+**Action:** Always provide localized `aria-label` and `Tooltip` (wrapped in `TooltipPortal` if the container has `overflow: hidden`) for titlebar buttons. Ensure `aria-hidden` is only applied when the titlebar is NOT being rendered (e.g., `aria-hidden={!windowsElectron}`). Use `focus-visible:ring-inset` for buttons at the very edge of the window to prevent focus indicator clipping.
