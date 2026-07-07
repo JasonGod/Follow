@@ -1,0 +1,3 @@
+## 2025-05-15 - [Titlebar UX & Accessibility]
+**Learning:** In custom Electron titlebars with `overflow: hidden`, Radix Tooltips will be clipped unless wrapped in a `TooltipPortal`. Additionally, when the default focus outline is disabled globally, interactive elements at the window edge (like window controls) should use `focus-visible:ring-inset` to keep the focus indicator visible and within the window boundary. Standard Windows localized terms for Simplified Chinese (zh-CN) are 最小化 (Minimize), 最大化 (Maximize), and 向下还原 (Restore).
+**Action:** Always use `TooltipPortal` for tooltips in constrained containers, implement `focus-visible:ring-inset` for edge-aligned interactive elements, and use standard OS terminology for system-level actions.
