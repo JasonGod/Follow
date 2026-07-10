@@ -1,0 +1,3 @@
+## 2024-10-30 - [Titlebar Accessibility & Tooltips]
+**Learning:** Window control buttons in custom Electron titlebars are often icon-only and lack ARIA labels, making them inaccessible to screen readers. Additionally, without tooltips, their function might not be immediately clear to all users, especially the "Restore" vs "Maximize" states.
+**Action:** Always provide localized `aria-label` and `Tooltip` for titlebar buttons. Use `TooltipPortal` when the titlebar has `overflow: hidden` to prevent tooltip clipping. Use `onFocusCapture={stopPropagation}` to prevent Radix Tooltip from stealing focus or behaving unexpectedly on interactive elements.
