@@ -1,0 +1,3 @@
+## 2024-09-04 - Titlebar Accessibility and Tooltips
+**Learning:** When using Radix Tooltips within components that have `overflow: hidden` (such as the app Titlebar), use `TooltipPortal` to ensure tooltips are not clipped and render correctly outside the parent boundary. Standard Windows localized terms for Titlebar actions in Simplified Chinese (zh-CN) are: 最小化 (Minimize), 最大化 (Maximize), and 向下还原 (Restore).
+**Action:** Always wrap titlebar window actions in Tooltips with `TooltipPortal` and provide explicit `aria-label` for accessibility. Use `onFocusCapture={stopPropagation}` on interactive elements within the Titlebar to prevent Radix Tooltip focus-related issues in the Electron environment.
