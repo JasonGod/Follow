@@ -1,0 +1,4 @@
+## 2025-05-14 - [Accessibility & micro-UX] Enhanced Window Controls in Custom Titlebar
+**Learning:** In applications with a custom Electron titlebar, window control buttons (Minimize, Maximize, Close) are often overlooked in terms of accessibility and keyboard navigation. Because these buttons are at the extreme edges of the window, using a standard focus ring can result in visual clipping. Additionally, icon-only buttons in the titlebar must have localized `aria-label` and `Tooltip` components for both screen reader support and visual clarity. When a container has `overflow: hidden`, Radix Tooltips must use `TooltipPortal` to avoid being clipped.
+
+**Action:** Always use `focus-visible:ring-inset` for edge-aligned titlebar buttons. Wrap icon-only buttons with `Tooltip` + `TooltipPortal` and provide localized `aria-label`. Use the `common` i18n namespace for standard actions like 'minimize', 'maximize', and 'restore' (向下还原 in zh-CN).
