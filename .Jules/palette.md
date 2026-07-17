@@ -1,0 +1,5 @@
+# Palette's Journal - Critical Learnings
+
+## 2024-07-17 - Accessible Titlebar Interaction with Radix Tooltips
+**Learning:** Custom titlebars in Electron apps often neglect accessibility (lacking ARIA labels and focus indicators) and lack context indicators (tooltips) for icon-only buttons. When adding Radix UI Tooltips within narrow, high-z-index containers (such as the window control region), it's crucial to utilize `TooltipPortal` to prevent clipping due to container `overflow: hidden`, and `onFocusCapture={stopPropagation}` to resolve focus-triggering conflicts with click/focus captures. Standard Windows titlebar actions have specific localized terminologies that should be strictly respected (e.g., 最小化 for Minimize, 向下还原 for Restore).
+**Action:** When designing custom interactive titlebars or icon-only buttons in Electron wrapper windows, always provide localized `aria-label` attributes, inset focus-visible indicators (`focus-visible:ring-inset`), and render hover-state tooltips outside the layout boundary using a portal.
