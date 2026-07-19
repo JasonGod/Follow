@@ -1,0 +1,3 @@
+## 2025-01-25 - [Automating Accessibility Fallbacks and Keyboard Focus on Icon-Only Buttons]
+**Learning:** Custom-designed button components (such as `ActionButton`) that wrap icon elements often lack explicit `aria-label` attributes and keyboard focus indicators. When a global CSS rule disables default focus outlines (`:focus-visible { outline: none; }`), keyboard navigation becomes completely invisible.
+**Action:** Always provide a robust fallback mechanism that automatically derives the button's `aria-label` from its `tooltip` (when the tooltip is a string) and consistently apply the standard design system's focus indicator classes (`focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:outline-none`) to ensure keyboard navigability.
