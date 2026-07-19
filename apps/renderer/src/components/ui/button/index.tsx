@@ -49,6 +49,7 @@ export const ActionButton = React.forwardRef<
   ) => {
     const buttonRef = React.useRef<HTMLButtonElement>(null)
     React.useImperativeHandle(ref, () => buttonRef.current!)
+    const ariaLabel = rest["aria-label"] ?? (typeof tooltip === "string" ? tooltip : undefined)
 
     return (
       <>
@@ -62,13 +63,14 @@ export const ActionButton = React.forwardRef<
               className={cn(
                 "no-drag-region inline-flex size-8 items-center justify-center text-xl",
                 active && "bg-zinc-500/15 hover:bg-zinc-500/20",
-                //"focus-visible:bg-zinc-500/30 focus-visible:!outline-none",
+                "focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:outline-none",
                 "rounded-md duration-200 hover:bg-theme-button-hover data-[state=open]:bg-theme-button-hover",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 className,
               )}
               type="button"
               disabled={disabled}
+              aria-label={ariaLabel}
               {...rest}
             >
               {typeof icon === "function"
