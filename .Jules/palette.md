@@ -1,0 +1,3 @@
+## 2025-01-24 - Windows-style Titlebar Accessibility & Focus Interactions
+**Learning:** In electron applications with a custom top bar, focus-visible indicators for edge-aligned window controls must use `focus-visible:ring-inset` to stay visible within bounds. Furthermore, to avoid mouse/focus conflicts in Radix tooltips, `onFocusCapture={stopPropagation}` should be used to stop event bubbling.
+**Action:** When designing edge-aligned icon buttons or custom titlebars, always use `ring-inset` focus rings, Radix `TooltipPortal` to prevent layout clipping, and suppress event propagation on capture to ensure flawless keyboard navigation and focus management.
