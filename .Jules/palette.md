@@ -1,0 +1,3 @@
+## 2024-07-23 - [Keyboard Nav & ARIA on Icon-only ActionButtons]
+**Learning:** Icon-only action buttons default to not having accessible names for screen readers and miss clear visual focus outlines because the global styles disable focus-visible outlines. Falling back to the tooltip text as `aria-label` provides semantic semantics for assistive tech without redundant props. Custom focus-visible rings are required to make them accessible to keyboard navigators.
+**Action:** Automatically use tooltip string props as an `aria-label` fallback for ActionButton, and explicitly apply a theme-aligned `focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:outline-none` style.
