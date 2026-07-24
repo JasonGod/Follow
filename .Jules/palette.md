@@ -1,0 +1,3 @@
+## 2025-02-15 - [Improving Shared CopyButton Accessibility and Visual Feedback]
+**Learning:** Icon-only interactive buttons used across the application (like `CopyButton`) are frequently missed during accessibility sweeps, leaving screen reader users without context and visual users without tooltips. In complex UI layouts with copyable elements (e.g., code snippets, transaction addresses, referral codes), adding localized `aria-label` attributes and context-aware Radix tooltips (showing 'Copy' / 'Copied to clipboard' dynamically) immensely boosts accessibility and clarity.
+**Action:** Always wrap universal icon-only utility components in tooltips and assign dynamic, localized `aria-label` attributes that reflect the state (e.g., pending vs. succeeded).
