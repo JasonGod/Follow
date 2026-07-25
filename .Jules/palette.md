@@ -1,0 +1,3 @@
+## 2026-07-25 - Custom Electron Titlebar Controls Polish
+**Learning:** Adding custom control buttons to an Electron titlebar requires specific UX/accessibility overrides. Because default outlines are disabled globally, explicit `focus-visible` rings with `focus-visible:ring-inset` must be added so the focus indicator isn't cut off by the window boundaries. Radix Tooltips within overflow-hidden header elements must use `TooltipPortal` to render outside the boundary.
+**Action:** Always provide `aria-label`, standard `focus-visible:ring-inset` class, wrap inside `Tooltip` with a `TooltipPortal`, and prevent focus capture bubble issues with `onFocusCapture={stopPropagation}` on window action buttons.
