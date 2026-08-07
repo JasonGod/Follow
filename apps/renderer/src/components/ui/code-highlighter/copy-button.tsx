@@ -1,8 +1,11 @@
 import type { Variants } from "framer-motion"
 import { AnimatePresence } from "framer-motion"
 import { useCallback, useRef, useState } from "react"
+import { useTranslation } from "react-i18next"
 
 import { m } from "~/components/common/Motion"
+import { Tooltip, TooltipContent, TooltipPortal, TooltipTrigger } from "~/components/ui/tooltip"
+import { stopPropagation } from "~/lib/dom"
 import { cn } from "~/lib/utils"
 
 import { MotionButtonBase } from "../button"
@@ -26,6 +29,7 @@ export const CopyButton: Component<{
   value: string
   style?: React.CSSProperties
 }> = ({ value, className, style }) => {
+  const { t } = useTranslation("common")
   const [copied, setCopied] = useState(false)
   const copiedTimerRef = useRef<any>()
   const handleCopy = useCallback(() => {
@@ -37,25 +41,39 @@ export const CopyButton: Component<{
       setCopied(false)
     }, 2000)
   }, [value])
-  return (
-    <MotionButtonBase
-      type="button"
-      onClick={handleCopy}
-      className={cn(
-        "center pointer-events-auto flex text-xs",
-        "rounded-md border border-accent/5 bg-accent/80 p-1.5 text-white backdrop-blur duration-200",
 
-        className,
-      )}
-      style={style}
-    >
-      <AnimatePresence mode="wait">
-        {copied ? (
-          <m.i key="copied" className="i-mgc-check-filled size-4" {...copyIconVariants} />
-        ) : (
-          <m.i key="copy" className="i-mgc-copy-2-cute-re size-4" {...copyIconVariants} />
-        )}
-      </AnimatePresence>
-    </MotionButtonBase>
+  const label = copied ? t("app.copied_to_clipboard") : t("words.copy")
+
+  return (
+    <Tooltip disableHoverableContent>
+      <TooltipTrigger asChild>
+        <MotionButtonBase
+          type="button"
+          aria-label={label}
+          onClick={handleCopy}
+          onFocusCapture={stopPropagation}
+          className={cn(
+            "center pointer-events-auto flex text-xs",
+            "rounded-md border border-accent/5 bg-accent/80 p-1.5 text-white backdrop-blur duration-200",
+            "focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:outline-none",
+            className,
+          )}
+          style={style}
+        >
+          <AnimatePresence mode="wait">
+            {copied ? (
+              <m.i key="copied" className="i-mgc-check-filled size-4" {...copyIconVariants} />
+            ) : (
+              <m.i key="copy" className="i-mgc-copy-2-cute-re size-4" {...copyIconVariants} />
+            )}
+          </AnimatePresence>
+        </MotionButtonBase>
+      </TooltipTrigger>
+      <TooltipPortal>
+        <TooltipContent side="top">
+          {label}
+        </TooltipContent>
+      </TooltipPortal>
+    </Tooltip>
   )
 }

@@ -1,0 +1,3 @@
+## 2026-08-07 - Dynamic Tooltip Accessibility on Floating Buttons
+**Learning:** For floating or hover-triggered action buttons (like code highlighter copy buttons), screen readers and keyboard-only users cannot access them unless they have localized `aria-label` properties, standard focus-visible rings, and stop focus capture propagation (`onFocusCapture={stopPropagation}`) to prevent focus state collision in Radix Tooltips.
+**Action:** When creating small overlay/floating action buttons, wrap them in standard Radix tooltips and dynamically sync the `aria-label` and tooltip content with the action state (e.g. "Copy" vs "Copied to clipboard").
