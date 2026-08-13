@@ -1,9 +1,13 @@
 {
   "app.copied_to_clipboard": "Copiato negli appunti",
   "cancel": "Annulla",
+  "close": "Chiudi",
   "confirm": "Conferma",
+  "maximize": "Massimizza",
+  "minimize": "Minimizza",
   "ok": "OK",
   "quantifier.piece": "",
+  "restore": "Ripristina",
   "time.last_night": "Ieri sera",
   "time.the_night_before_last": "L'altra sera",
   "time.today": "Oggi",
