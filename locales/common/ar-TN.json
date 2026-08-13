@@ -1,9 +1,13 @@
 {
   "app.copied_to_clipboard": "تم النسخ إلى الحافظة",
   "cancel": "إلغاء",
+  "close": "إغلاق",
   "confirm": "تأكيد",
+  "maximize": "تكبير",
+  "minimize": "تصغير",
   "ok": "موافق",
   "quantifier.piece": "",
+  "restore": "استعادة",
   "time.last_night": "الليلة الماضية",
   "time.the_night_before_last": "الليلة التي قبلها",
   "time.today": "اليوم",

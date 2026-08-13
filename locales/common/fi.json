@@ -1,9 +1,13 @@
 {
   "app.copied_to_clipboard": "Kopioitu leikepöydälle",
   "cancel": "Peruuta",
+  "close": "Sulje",
   "confirm": "Vahvista",
+  "maximize": "Maksimoi",
+  "minimize": "Minimoi",
   "ok": "OK",
   "quantifier.piece": "",
+  "restore": "Palauta",
   "time.last_night": "Viime yö",
   "time.the_night_before_last": "Toissa yö",
   "time.today": "Tänään",

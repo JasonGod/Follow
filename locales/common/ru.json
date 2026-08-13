@@ -1,9 +1,13 @@
 {
   "app.copied_to_clipboard": "Скопировано в буфер обмена",
   "cancel": "Отменить",
+  "close": "Закрыть",
   "confirm": "Подтвердить",
+  "maximize": "Развернуть",
+  "minimize": "Свернуть",
   "ok": "ОК",
   "quantifier.piece": "",
+  "restore": "Восстановить",
   "time.last_night": "Прошлой ночью",
   "time.the_night_before_last": "Позапрошлой ночью",
   "time.today": "Сегодня",
