@@ -80,8 +80,10 @@ export function Component() {
 }
 
 const BackToTopFAB = ({ show, scrollRef }: { show: boolean; scrollRef: any }) => {
+  const { t } = useTranslation()
   return (
     <FABPortable
+      aria-label={t("words.back_to_top", { ns: "common" })}
       onClick={() => {
         springScrollTo(0, scrollRef)
       }}
