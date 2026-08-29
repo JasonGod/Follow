@@ -43,7 +43,8 @@ const Wrapper: Component<{
       >
         <button
           onClick={dismiss}
-          className="center fixed right-6 top-6 size-8 rounded-full border border-white/20 bg-neutral-900 text-white"
+          aria-label="Close preview"
+          className="center fixed right-6 top-6 size-8 rounded-full border border-white/20 bg-neutral-900 text-white focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:outline-none"
           type="button"
         >
           <i className="i-mgc-close-cute-re" />
@@ -148,7 +149,8 @@ export const PreviewMediaContent: FC<{
               transition={{ ease: "easeInOut", duration: 0.2 }}
               onClick={() => swiperRef.current?.swiper.slidePrev()}
               type="button"
-              className="center fixed left-2 top-1/2 z-[99] size-8 -translate-y-1/2 rounded-full border border-white/20 bg-neutral-900/80 text-white backdrop-blur duration-200 hover:bg-neutral-900"
+              aria-label="Previous image"
+              className="center fixed left-2 top-1/2 z-[99] size-8 -translate-y-1/2 rounded-full border border-white/20 bg-neutral-900/80 text-white backdrop-blur duration-200 hover:bg-neutral-900 focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:outline-none"
             >
               <i className="i-mingcute-arrow-left-line" />
             </m.button>
@@ -159,7 +161,8 @@ export const PreviewMediaContent: FC<{
               transition={{ ease: "easeInOut", duration: 0.2 }}
               onClick={() => swiperRef.current?.swiper.slideNext()}
               type="button"
-              className="center fixed right-2 top-1/2 z-[99] size-8 -translate-y-1/2 rounded-full border border-white/20 bg-neutral-900/80 text-white backdrop-blur duration-200 hover:bg-neutral-900"
+              aria-label="Next image"
+              className="center fixed right-2 top-1/2 z-[99] size-8 -translate-y-1/2 rounded-full border border-white/20 bg-neutral-900/80 text-white backdrop-blur duration-200 hover:bg-neutral-900 focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:outline-none"
             >
               <i className="i-mingcute-arrow-right-line" />
             </m.button>
@@ -185,8 +188,9 @@ export const PreviewMediaContent: FC<{
                     }}
                     type="button"
                     key={index}
+                    aria-label={`Go to slide ${index + 1}`}
                     className={cn(
-                      "inline-block size-[6px] rounded-full",
+                      "inline-block size-[6px] rounded-full focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:outline-none",
                       currentSlideIndex === index ? "bg-white" : "bg-white/20",
                     )}
                   />
