@@ -1,6 +1,7 @@
 import type { MediaModel } from "@follow/shared/hono"
 import type { FC } from "react"
 import { Fragment, useCallback, useEffect, useRef, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { Keyboard, Mousewheel } from "swiper/modules"
 import type { SwiperRef } from "swiper/react"
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -21,6 +22,7 @@ const Wrapper: Component<{
   src: string
   showActions?: boolean
 }> = ({ children, src, showActions }) => {
+  const { t } = useTranslation()
   const { dismiss } = useCurrentModal()
 
   return (
@@ -45,6 +47,7 @@ const Wrapper: Component<{
           onClick={dismiss}
           className="center fixed right-6 top-6 size-8 rounded-full border border-white/20 bg-neutral-900 text-white"
           type="button"
+          aria-label={t("close")}
         >
           <i className="i-mgc-close-cute-re" />
         </button>
@@ -149,6 +152,7 @@ export const PreviewMediaContent: FC<{
               onClick={() => swiperRef.current?.swiper.slidePrev()}
               type="button"
               className="center fixed left-2 top-1/2 z-[99] size-8 -translate-y-1/2 rounded-full border border-white/20 bg-neutral-900/80 text-white backdrop-blur duration-200 hover:bg-neutral-900"
+              aria-label="Previous image"
             >
               <i className="i-mingcute-arrow-left-line" />
             </m.button>
@@ -160,6 +164,7 @@ export const PreviewMediaContent: FC<{
               onClick={() => swiperRef.current?.swiper.slideNext()}
               type="button"
               className="center fixed right-2 top-1/2 z-[99] size-8 -translate-y-1/2 rounded-full border border-white/20 bg-neutral-900/80 text-white backdrop-blur duration-200 hover:bg-neutral-900"
+              aria-label="Next image"
             >
               <i className="i-mingcute-arrow-right-line" />
             </m.button>
@@ -189,6 +194,7 @@ export const PreviewMediaContent: FC<{
                       "inline-block size-[6px] rounded-full",
                       currentSlideIndex === index ? "bg-white" : "bg-white/20",
                     )}
+                    aria-label={`Go to slide ${index + 1}`}
                   />
                 ))}
             </div>

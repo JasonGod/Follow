@@ -445,6 +445,7 @@ const ActionIcon = ({
       enabled: !!shortcut,
     },
   )
+  const ariaLabel = typeof label === "string" ? label : undefined
   return (
     <Tooltip delayDuration={labelDelayDuration}>
       <TooltipTrigger asChild>
@@ -452,6 +453,7 @@ const ActionIcon = ({
           type="button"
           className="center relative z-[1] size-6 rounded-md hover:bg-theme-button-hover"
           onClick={onClick}
+          aria-label={ariaLabel}
         >
           {children || <i className={className} />}
         </button>
