@@ -43,6 +43,7 @@ const Wrapper: Component<{
       >
         <button
           onClick={dismiss}
+          aria-label="Close media preview"
           className="center fixed right-6 top-6 size-8 rounded-full border border-white/20 bg-neutral-900 text-white"
           type="button"
         >
@@ -147,6 +148,7 @@ export const PreviewMediaContent: FC<{
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ ease: "easeInOut", duration: 0.2 }}
               onClick={() => swiperRef.current?.swiper.slidePrev()}
+              aria-label="Previous slide"
               type="button"
               className="center fixed left-2 top-1/2 z-[99] size-8 -translate-y-1/2 rounded-full border border-white/20 bg-neutral-900/80 text-white backdrop-blur duration-200 hover:bg-neutral-900"
             >
@@ -158,6 +160,7 @@ export const PreviewMediaContent: FC<{
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ ease: "easeInOut", duration: 0.2 }}
               onClick={() => swiperRef.current?.swiper.slideNext()}
+              aria-label="Next slide"
               type="button"
               className="center fixed right-2 top-1/2 z-[99] size-8 -translate-y-1/2 rounded-full border border-white/20 bg-neutral-900/80 text-white backdrop-blur duration-200 hover:bg-neutral-900"
             >
@@ -183,6 +186,7 @@ export const PreviewMediaContent: FC<{
                     onClick={() => {
                       swiperRef.current?.swiper.slideTo(index)
                     }}
+                    aria-label={`Go to slide ${index + 1}`}
                     type="button"
                     key={index}
                     className={cn(
