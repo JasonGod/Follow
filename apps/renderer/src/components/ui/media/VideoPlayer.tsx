@@ -185,27 +185,35 @@ const BizControlOutsideMedia = () => {
 }
 
 const FloatMutedButton = () => {
+  const { t } = useTranslation()
   const ctx = useContext(VideoPlayerContext)
   const isMuted = ctx.state.muted
+  const label = isMuted ? t("player.unmute") : t("player.mute")
   return (
-    <MotionButtonBase
-      className="center absolute right-4 top-4 z-10 size-7 rounded-full bg-black/50 opacity-0 duration-200 group-hover:opacity-100"
-      onClick={(e) => {
-        e.stopPropagation()
-        if (isMuted) {
-          ctx.controls.unmute()
-        } else {
-          ctx.controls.mute()
-        }
-      }}
-    >
-      <IconScaleTransition
-        className="size-4 text-white"
-        icon1="i-mgc-volume-cute-re"
-        icon2="i-mgc-volume-mute-cute-re"
-        status={isMuted ? "done" : "init"}
-      />
-    </MotionButtonBase>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <MotionButtonBase
+          aria-label={label}
+          className="center absolute right-4 top-4 z-10 size-7 rounded-full bg-black/50 opacity-0 duration-200 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
+          onClick={(e) => {
+            e.stopPropagation()
+            if (isMuted) {
+              ctx.controls.unmute()
+            } else {
+              ctx.controls.mute()
+            }
+          }}
+        >
+          <IconScaleTransition
+            className="size-4 text-white"
+            icon1="i-mgc-volume-cute-re"
+            icon2="i-mgc-volume-mute-cute-re"
+            status={isMuted ? "done" : "init"}
+          />
+        </MotionButtonBase>
+      </TooltipTrigger>
+      <TooltipContent className="text-xs">{label}</TooltipContent>
+    </Tooltip>
   )
 }
 
@@ -346,8 +354,10 @@ const VolumeControl = () => {
   const volume = useContextSelector(VideoPlayerContext, (v) => v.state.volume)
   const muted = useContextSelector(VideoPlayerContext, (v) => v.state.muted)
   if (!hasAudio) return null
+  const ariaLabel = muted ? t("player.unmute") : t("player.mute")
   return (
     <ActionIcon
+      ariaLabel={ariaLabel}
       label={<VolumeSlider onVolumeChange={controls.volume} volume={volume} />}
       onClick={() => {
         if (muted) {
@@ -359,9 +369,9 @@ const VolumeControl = () => {
       labelDelayDuration={1}
     >
       {muted ? (
-        <i className="i-mgc-volume-mute-cute-re" title={t("player.unmute")} />
+        <i className="i-mgc-volume-mute-cute-re" />
       ) : (
-        <i className="i-mgc-volume-cute-re" title={t("player.mute")} />
+        <i className="i-mgc-volume-cute-re" />
       )}
     </ActionIcon>
   )
@@ -427,6 +437,7 @@ const ActionIcon = ({
   labelDelayDuration = 700,
   children,
   shortcut,
+  ariaLabel,
 }: {
   className?: string
   onClick?: () => void
@@ -434,6 +445,7 @@ const ActionIcon = ({
   labelDelayDuration?: number
   children?: React.ReactNode
   shortcut?: string
+  ariaLabel?: string
 }) => {
   useHotkeys(
     shortcut || "",
@@ -445,12 +457,14 @@ const ActionIcon = ({
       enabled: !!shortcut,
     },
   )
+  const computedAriaLabel = ariaLabel || (typeof label === "string" ? label : undefined)
   return (
     <Tooltip delayDuration={labelDelayDuration}>
       <TooltipTrigger asChild>
         <button
           type="button"
-          className="center relative z-[1] size-6 rounded-md hover:bg-theme-button-hover"
+          aria-label={computedAriaLabel}
+          className="center relative z-[1] size-6 rounded-md hover:bg-theme-button-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
           onClick={onClick}
         >
           {children || <i className={className} />}
