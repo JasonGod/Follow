@@ -1,6 +1,7 @@
 import type { MediaModel } from "@follow/shared/hono"
 import type { FC } from "react"
 import { Fragment, useCallback, useEffect, useRef, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { Keyboard, Mousewheel } from "swiper/modules"
 import type { SwiperRef } from "swiper/react"
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -22,6 +23,7 @@ const Wrapper: Component<{
   showActions?: boolean
 }> = ({ children, src, showActions }) => {
   const { dismiss } = useCurrentModal()
+  const { t } = useTranslation()
 
   return (
     <div className="center relative size-full p-12" onClick={dismiss}>
@@ -43,6 +45,7 @@ const Wrapper: Component<{
       >
         <button
           onClick={dismiss}
+          aria-label={t("close", { ns: "common" })}
           className="center fixed right-6 top-6 size-8 rounded-full border border-white/20 bg-neutral-900 text-white"
           type="button"
         >
