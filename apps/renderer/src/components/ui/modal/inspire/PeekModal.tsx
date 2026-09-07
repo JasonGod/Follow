@@ -1,5 +1,6 @@
 import type { PropsWithChildren } from "react"
 import { createContext, useContext } from "react"
+import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
 import { m } from "~/components/common/Motion"
@@ -16,6 +17,7 @@ export const PeekModal = (
 ) => {
   const { dismissAll, dismissTop } = useModalStack()
   const { to, children } = props
+  const { t } = useTranslation("common")
 
   return (
     <div className="relative mx-auto mt-[10vh] max-w-full overflow-auto px-2 scrollbar-none lg:max-w-[65rem] lg:p-0">
@@ -37,21 +39,23 @@ export const PeekModal = (
         className="fixed right-3 top-2 flex items-center gap-4"
       >
         <Link
-          className="center flex size-8 rounded-full p-1 shadow-sm ring-1 ring-zinc-200 dark:ring-neutral-800"
+          className="center flex size-8 rounded-full p-1 shadow-sm ring-1 ring-zinc-200 duration-200 hover:bg-theme-button-hover focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:outline-none dark:ring-neutral-800"
           to={to}
           onClick={dismissAll}
+          aria-label="Open full page"
         >
           <i className="i-mgc-fullscreen-2-cute-re text-lg" />
-          <span className="sr-only">Go to this link</span>
+          <span className="sr-only">Open full page</span>
         </Link>
 
         <button
           type="button"
-          className="center flex size-8 rounded-full p-1 shadow-sm ring-1 ring-zinc-200 dark:ring-neutral-800"
+          className="center flex size-8 rounded-full p-1 shadow-sm ring-1 ring-zinc-200 duration-200 hover:bg-theme-button-hover focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:outline-none dark:ring-neutral-800"
           onClick={dismissTop}
+          aria-label={t("close")}
         >
           <i className="i-mgc-close-cute-re text-lg" />
-          <span className="sr-only">Dimiss</span>
+          <span className="sr-only">{t("close")}</span>
         </button>
       </m.div>
     </div>
