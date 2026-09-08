@@ -59,10 +59,13 @@ export const ActionButton = React.forwardRef<
               ref={buttonRef}
               // @see https://github.com/radix-ui/primitives/issues/2248#issuecomment-2147056904
               onFocusCapture={stopPropagation}
+              aria-label={
+                rest["aria-label"] ?? (typeof tooltip === "string" ? tooltip : undefined)
+              }
               className={cn(
                 "no-drag-region inline-flex size-8 items-center justify-center text-xl",
                 active && "bg-zinc-500/15 hover:bg-zinc-500/20",
-                //"focus-visible:bg-zinc-500/30 focus-visible:!outline-none",
+                "focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:outline-none",
                 "rounded-md duration-200 hover:bg-theme-button-hover data-[state=open]:bg-theme-button-hover",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 className,
@@ -198,6 +201,7 @@ export const IconButton = React.forwardRef<
           variant: "ghost",
         }),
         "group relative gap-2 bg-accent/10 px-4 hover:bg-accent dark:bg-accent/20 dark:hover:bg-accent/60",
+        "focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:outline-none",
         rest.className,
       )}
     >
