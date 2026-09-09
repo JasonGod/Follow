@@ -122,7 +122,8 @@ const CornerPlayerImpl = () => {
           <div className="center absolute inset-0 w-full opacity-0 transition-all duration-200 ease-in-out group-hover:opacity-100">
             <button
               type="button"
-              className="center size-10 rounded-full bg-theme-background opacity-95 hover:bg-accent hover:text-white hover:opacity-100"
+              aria-label={playerValue.status === "playing" ? t("player.pause") : t("player.play")}
+              className="center size-10 rounded-full bg-theme-background opacity-95 hover:bg-accent hover:text-white hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
               onClick={handleClickPlay}
             >
               <i
@@ -183,7 +184,11 @@ const CornerPlayerImpl = () => {
         </div>
         {/* audio control */}
         <div className="flex items-center">
-          <ActionIcon label={<PlaybackRateSelector />} labelDelayDuration={0}>
+          <ActionIcon
+            label={<PlaybackRateSelector />}
+            ariaLabel={t("player.playback_rate")}
+            labelDelayDuration={0}
+          >
             <PlaybackRateButton />
           </ActionIcon>
           <ActionIcon
@@ -192,6 +197,7 @@ const CornerPlayerImpl = () => {
             )}
             onClick={() => AudioPlayer.toggleMute()}
             label={<CornerPlayerVolumeSlider />}
+            ariaLabel={playerValue.isMute ? t("player.unmute") : t("player.mute")}
             labelDelayDuration={0}
           />
           <ActionIcon
@@ -274,6 +280,7 @@ const ActionIcon = ({
   className,
   onClick,
   label,
+  ariaLabel,
   labelDelayDuration = 700,
   tooltipAlign,
   children,
@@ -281,21 +288,27 @@ const ActionIcon = ({
   className?: string
   onClick?: () => void
   label: React.ReactNode
+  ariaLabel?: string
   labelDelayDuration?: number
   tooltipAlign?: TooltipContentProps["align"]
   children?: React.ReactNode
-}) => (
-  <Tooltip delayDuration={labelDelayDuration}>
-    <TooltipTrigger
-      className="center size-6 rounded-md text-zinc-500 hover:bg-theme-button-hover"
-      onClick={onClick}
-      asChild
-    >
-      <button type="button">{children || <i className={className} />}</button>
-    </TooltipTrigger>
-    <TooltipContent align={tooltipAlign}>{label}</TooltipContent>
-  </Tooltip>
-)
+}) => {
+  const computedAriaLabel = ariaLabel || (typeof label === "string" ? label : undefined)
+  return (
+    <Tooltip delayDuration={labelDelayDuration}>
+      <TooltipTrigger
+        className="center size-6 rounded-md text-zinc-500 hover:bg-theme-button-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
+        onClick={onClick}
+        asChild
+      >
+        <button type="button" aria-label={computedAriaLabel}>
+          {children || <i className={className} />}
+        </button>
+      </TooltipTrigger>
+      <TooltipContent align={tooltipAlign}>{label}</TooltipContent>
+    </Tooltip>
+  )
+}
 
 const CornerPlayerVolumeSlider = () => {
   const volume = useAudioPlayerAtomSelector((v) => v.volume)
