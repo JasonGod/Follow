@@ -185,11 +185,13 @@ const BizControlOutsideMedia = () => {
 }
 
 const FloatMutedButton = () => {
+  const { t } = useTranslation()
   const ctx = useContext(VideoPlayerContext)
   const isMuted = ctx.state.muted
   return (
     <MotionButtonBase
-      className="center absolute right-4 top-4 z-10 size-7 rounded-full bg-black/50 opacity-0 duration-200 group-hover:opacity-100"
+      aria-label={isMuted ? t("player.unmute") : t("player.mute")}
+      className="center absolute right-4 top-4 z-10 size-7 rounded-full bg-black/50 opacity-0 duration-200 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
       onClick={(e) => {
         e.stopPropagation()
         if (isMuted) {
@@ -450,7 +452,8 @@ const ActionIcon = ({
       <TooltipTrigger asChild>
         <button
           type="button"
-          className="center relative z-[1] size-6 rounded-md hover:bg-theme-button-hover"
+          aria-label={typeof label === "string" ? label : undefined}
+          className="center relative z-[1] size-6 rounded-md hover:bg-theme-button-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
           onClick={onClick}
         >
           {children || <i className={className} />}
