@@ -6,8 +6,10 @@ import { useSubscribeElectronEvent } from "@follow/shared/event"
 import { AnimatePresence, m } from "framer-motion"
 import type { FC } from "react"
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useDebounceCallback, useEventCallback } from "usehooks-ts"
 
+import { ActionButton } from "~/components/ui/button"
 import { softSpringPreset } from "~/components/ui/constants/spring"
 import { useInputComposition, useRefValue } from "~/hooks/common"
 import { tipcClient } from "~/lib/client"
@@ -17,6 +19,7 @@ import { observeResize } from "~/lib/observe-resize"
 const CmdFImpl: FC<{
   onClose: () => void
 }> = ({ onClose }) => {
+  const { t } = useTranslation("common")
   const [value, setValue] = useState("")
 
   const currentValue = useRefValue(value)
@@ -99,9 +102,10 @@ const CmdFImpl: FC<{
   const nativeSearch = useDebounceCallback(nativeSearchImpl, 500)
   useLayoutEffect(() => {
     inputRef.current?.focus()
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       inputRef.current?.focus()
     })
+    return () => clearTimeout(timer)
   }, [isSearching])
   const handleScroll = useCallback(() => {
     const $input = inputRef.current
@@ -146,28 +150,28 @@ const CmdFImpl: FC<{
           text={value}
         />
       </div>
-      <div className="center gap-1 [&>*]:opacity-80">
-        <button
-          type="button"
-          className="center hover:opacity-90"
+      <div className="center gap-1">
+        <ActionButton
+          tooltip={t("words.previous", { defaultValue: "Previous" })}
+          className="size-6 text-base"
           onClick={() => {
             nativeSearchImpl(value, "backward")
           }}
         >
           <i className="i-mgc-back-2-cute-re" />
-        </button>
-        <button
-          type="button"
-          className="center hover:opacity-90"
+        </ActionButton>
+        <ActionButton
+          tooltip={t("words.next", { defaultValue: "Next" })}
+          className="size-6 text-base"
           onClick={() => {
             nativeSearchImpl(value, "forward")
           }}
         >
           <i className="i-mgc-forward-2-cute-re" />
-        </button>
-        <button
-          type="button"
-          className="center hover:opacity-90"
+        </ActionButton>
+        <ActionButton
+          tooltip={t("close")}
+          className="size-6 text-base"
           onClick={() => {
             setValue("")
             nativeSearchImpl("")
@@ -175,7 +179,7 @@ const CmdFImpl: FC<{
           }}
         >
           <i className="i-mgc-close-cute-re" />
-        </button>
+        </ActionButton>
       </div>
     </form>
   )
