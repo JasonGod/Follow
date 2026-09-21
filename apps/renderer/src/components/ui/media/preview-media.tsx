@@ -43,6 +43,7 @@ const Wrapper: Component<{
       >
         <button
           onClick={dismiss}
+          aria-label="Close"
           className="center fixed right-6 top-6 size-8 rounded-full border border-white/20 bg-neutral-900 text-white"
           type="button"
         >
@@ -143,6 +144,7 @@ export const PreviewMediaContent: FC<{
         {showActions && (
           <div tabIndex={-1} onClick={stopPropagation}>
             <m.button
+              aria-label="Previous"
               initial={{ opacity: 0, x: -20, scale: 0.94 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ ease: "easeInOut", duration: 0.2 }}
@@ -154,6 +156,7 @@ export const PreviewMediaContent: FC<{
             </m.button>
 
             <m.button
+              aria-label="Next"
               initial={{ opacity: 0, x: 20, scale: 0.94 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ ease: "easeInOut", duration: 0.2 }}
@@ -180,6 +183,7 @@ export const PreviewMediaContent: FC<{
                 .fill(0)
                 .map((_, index) => (
                   <button
+                    aria-label={`Go to slide ${index + 1}`}
                     onClick={() => {
                       swiperRef.current?.swiper.slideTo(index)
                     }}
