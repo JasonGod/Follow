@@ -189,6 +189,7 @@ const FloatMutedButton = () => {
   const isMuted = ctx.state.muted
   return (
     <MotionButtonBase
+      aria-label={isMuted ? "Unmute video" : "Mute video"}
       className="center absolute right-4 top-4 z-10 size-7 rounded-full bg-black/50 opacity-0 duration-200 group-hover:opacity-100"
       onClick={(e) => {
         e.stopPropagation()
@@ -348,6 +349,7 @@ const VolumeControl = () => {
   if (!hasAudio) return null
   return (
     <ActionIcon
+      aria-label={muted ? t("player.unmute") : t("player.mute")}
       label={<VolumeSlider onVolumeChange={controls.volume} volume={volume} />}
       onClick={() => {
         if (muted) {
@@ -427,6 +429,7 @@ const ActionIcon = ({
   labelDelayDuration = 700,
   children,
   shortcut,
+  "aria-label": ariaLabel,
 }: {
   className?: string
   onClick?: () => void
@@ -434,6 +437,7 @@ const ActionIcon = ({
   labelDelayDuration?: number
   children?: React.ReactNode
   shortcut?: string
+  "aria-label"?: string
 }) => {
   useHotkeys(
     shortcut || "",
@@ -445,11 +449,13 @@ const ActionIcon = ({
       enabled: !!shortcut,
     },
   )
+  const computedAriaLabel = ariaLabel || (typeof label === "string" ? label : undefined)
   return (
     <Tooltip delayDuration={labelDelayDuration}>
       <TooltipTrigger asChild>
         <button
           type="button"
+          aria-label={computedAriaLabel}
           className="center relative z-[1] size-6 rounded-md hover:bg-theme-button-hover"
           onClick={onClick}
         >
