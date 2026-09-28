@@ -1,6 +1,7 @@
 import type { MediaModel } from "@follow/shared/hono"
 import type { FC } from "react"
 import { Fragment, useCallback, useEffect, useRef, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { Keyboard, Mousewheel } from "swiper/modules"
 import type { SwiperRef } from "swiper/react"
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -22,6 +23,7 @@ const Wrapper: Component<{
   showActions?: boolean
 }> = ({ children, src, showActions }) => {
   const { dismiss } = useCurrentModal()
+  const { t } = useTranslation("common")
 
   return (
     <div className="center relative size-full p-12" onClick={dismiss}>
@@ -43,6 +45,7 @@ const Wrapper: Component<{
       >
         <button
           onClick={dismiss}
+          aria-label={t("close")}
           className="center fixed right-6 top-6 size-8 rounded-full border border-white/20 bg-neutral-900 text-white"
           type="button"
         >
@@ -82,6 +85,7 @@ export const PreviewMediaContent: FC<{
   media: PreviewMediaProps[]
   initialIndex?: number
 }> = ({ media, initialIndex = 0 }) => {
+  const { t } = useTranslation("shortcuts")
   const [currentMedia, setCurrentMedia] = useState(media[initialIndex])
   const [currentSlideIndex, setCurrentSlideIndex] = useState(initialIndex)
   const swiperRef = useRef<SwiperRef>(null)
@@ -148,6 +152,7 @@ export const PreviewMediaContent: FC<{
               transition={{ ease: "easeInOut", duration: 0.2 }}
               onClick={() => swiperRef.current?.swiper.slidePrev()}
               type="button"
+              aria-label={t("keys.entries.previous")}
               className="center fixed left-2 top-1/2 z-[99] size-8 -translate-y-1/2 rounded-full border border-white/20 bg-neutral-900/80 text-white backdrop-blur duration-200 hover:bg-neutral-900"
             >
               <i className="i-mingcute-arrow-left-line" />
@@ -159,6 +164,7 @@ export const PreviewMediaContent: FC<{
               transition={{ ease: "easeInOut", duration: 0.2 }}
               onClick={() => swiperRef.current?.swiper.slideNext()}
               type="button"
+              aria-label={t("keys.entries.next")}
               className="center fixed right-2 top-1/2 z-[99] size-8 -translate-y-1/2 rounded-full border border-white/20 bg-neutral-900/80 text-white backdrop-blur duration-200 hover:bg-neutral-900"
             >
               <i className="i-mingcute-arrow-right-line" />
