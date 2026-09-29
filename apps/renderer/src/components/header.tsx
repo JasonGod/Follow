@@ -57,6 +57,7 @@ export function Header() {
             </div>
           </div>
           <button
+            aria-label={t("user_button.profile", { ns: "app" })}
             className="cursor-pointer"
             type="button"
             onClick={() => {
