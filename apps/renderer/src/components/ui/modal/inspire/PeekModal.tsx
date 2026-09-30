@@ -39,19 +39,21 @@ export const PeekModal = (
         <Link
           className="center flex size-8 rounded-full p-1 shadow-sm ring-1 ring-zinc-200 dark:ring-neutral-800"
           to={to}
+          aria-label="Go to link"
           onClick={dismissAll}
         >
           <i className="i-mgc-fullscreen-2-cute-re text-lg" />
-          <span className="sr-only">Go to this link</span>
+          <span className="sr-only">Go to link</span>
         </Link>
 
         <button
           type="button"
           className="center flex size-8 rounded-full p-1 shadow-sm ring-1 ring-zinc-200 dark:ring-neutral-800"
+          aria-label="Dismiss"
           onClick={dismissTop}
         >
           <i className="i-mgc-close-cute-re text-lg" />
-          <span className="sr-only">Dimiss</span>
+          <span className="sr-only">Dismiss</span>
         </button>
       </m.div>
     </div>
