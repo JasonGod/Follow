@@ -50,6 +50,10 @@ export const ActionButton = React.forwardRef<
     const buttonRef = React.useRef<HTMLButtonElement>(null)
     React.useImperativeHandle(ref, () => buttonRef.current!)
 
+    const ariaLabel =
+      (rest as { "aria-label"?: string })["aria-label"] ??
+      (typeof tooltip === "string" ? tooltip : undefined)
+
     return (
       <>
         {shortcut && <HotKeyTrigger shortcut={shortcut} fn={() => buttonRef.current?.click()} />}
@@ -57,6 +61,7 @@ export const ActionButton = React.forwardRef<
           <TooltipTrigger asChild>
             <button
               ref={buttonRef}
+              aria-label={ariaLabel}
               // @see https://github.com/radix-ui/primitives/issues/2248#issuecomment-2147056904
               onFocusCapture={stopPropagation}
               className={cn(
