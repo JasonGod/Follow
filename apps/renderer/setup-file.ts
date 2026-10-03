@@ -18,4 +18,8 @@ if (!globalThis.navigator) {
     userAgent: "node",
   }
 }
+
+// @ts-expect-error global polyfill for tw macro used in style imports
+globalThis.tw = (strings: TemplateStringsArray, ...values: any[]) =>
+  strings.reduce((acc, str, i) => acc + str + (values[i] || ""), "")
 enableMapSet()
