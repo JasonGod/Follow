@@ -6,6 +6,7 @@ import { useSubscribeElectronEvent } from "@follow/shared/event"
 import { AnimatePresence, m } from "framer-motion"
 import type { FC } from "react"
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useDebounceCallback, useEventCallback } from "usehooks-ts"
 
 import { softSpringPreset } from "~/components/ui/constants/spring"
@@ -17,6 +18,7 @@ import { observeResize } from "~/lib/observe-resize"
 const CmdFImpl: FC<{
   onClose: () => void
 }> = ({ onClose }) => {
+  const { t } = useTranslation("common")
   const [value, setValue] = useState("")
 
   const currentValue = useRefValue(value)
@@ -124,6 +126,7 @@ const CmdFImpl: FC<{
           {...inputProps}
           ref={inputRef}
           name="search"
+          aria-label={t("words.search", { ns: "app", defaultValue: "Search" })}
           className="absolute inset-0 size-full appearance-none bg-transparent font-[system-ui] text-[15px] text-transparent caret-accent selection:text-transparent"
           style={{
             visibility: isSearching ? "hidden" : "visible",
@@ -149,7 +152,8 @@ const CmdFImpl: FC<{
       <div className="center gap-1 [&>*]:opacity-80">
         <button
           type="button"
-          className="center hover:opacity-90"
+          aria-label={t("words.previous", { defaultValue: "Previous" })}
+          className="center rounded-sm hover:opacity-90 focus-visible:opacity-100 focus-visible:ring-1 focus-visible:ring-accent"
           onClick={() => {
             nativeSearchImpl(value, "backward")
           }}
@@ -158,7 +162,8 @@ const CmdFImpl: FC<{
         </button>
         <button
           type="button"
-          className="center hover:opacity-90"
+          aria-label={t("words.next", { defaultValue: "Next" })}
+          className="center rounded-sm hover:opacity-90 focus-visible:opacity-100 focus-visible:ring-1 focus-visible:ring-accent"
           onClick={() => {
             nativeSearchImpl(value, "forward")
           }}
@@ -167,7 +172,8 @@ const CmdFImpl: FC<{
         </button>
         <button
           type="button"
-          className="center hover:opacity-90"
+          aria-label={t("close")}
+          className="center rounded-sm hover:opacity-90 focus-visible:opacity-100 focus-visible:ring-1 focus-visible:ring-accent"
           onClick={() => {
             setValue("")
             nativeSearchImpl("")
