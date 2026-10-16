@@ -1,4 +1,5 @@
 import { env } from "@follow/shared/env"
+import { useTranslation } from "react-i18next"
 import { useDebounceCallback } from "usehooks-ts"
 
 import { AudioPlayer, useAudioPlayerAtomSelector } from "~/atoms/player"
@@ -208,6 +209,7 @@ function AudioCover({
   durationInSeconds?: number
   feedIcon: React.ReactNode
 }) {
+  const { t } = useTranslation()
   const playStatus = useAudioPlayerAtomSelector((playerValue) =>
     playerValue.src === src && playerValue.show ? playerValue.status : false,
   )
@@ -242,6 +244,9 @@ function AudioCover({
       >
         <button
           type="button"
+          aria-label={
+            playStatus === "playing" ? t("player.pause") : t("player.play")
+          }
           className="center size-10 rounded-full bg-theme-background opacity-95 hover:bg-accent hover:text-white hover:opacity-100"
         >
           <i

@@ -122,6 +122,7 @@ const CornerPlayerImpl = () => {
           <div className="center absolute inset-0 w-full opacity-0 transition-all duration-200 ease-in-out group-hover:opacity-100">
             <button
               type="button"
+              aria-label={playerValue.status === "playing" ? t("player.pause") : t("player.play")}
               className="center size-10 rounded-full bg-theme-background opacity-95 hover:bg-accent hover:text-white hover:opacity-100"
               onClick={handleClickPlay}
             >
@@ -277,6 +278,7 @@ const ActionIcon = ({
   labelDelayDuration = 700,
   tooltipAlign,
   children,
+  "aria-label": ariaLabel,
 }: {
   className?: string
   onClick?: () => void
@@ -284,6 +286,7 @@ const ActionIcon = ({
   labelDelayDuration?: number
   tooltipAlign?: TooltipContentProps["align"]
   children?: React.ReactNode
+  "aria-label"?: string
 }) => (
   <Tooltip delayDuration={labelDelayDuration}>
     <TooltipTrigger
@@ -291,7 +294,12 @@ const ActionIcon = ({
       onClick={onClick}
       asChild
     >
-      <button type="button">{children || <i className={className} />}</button>
+      <button
+        type="button"
+        aria-label={ariaLabel || (typeof label === "string" ? label : undefined)}
+      >
+        {children || <i className={className} />}
+      </button>
     </TooltipTrigger>
     <TooltipContent align={tooltipAlign}>{label}</TooltipContent>
   </Tooltip>
