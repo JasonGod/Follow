@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useLayoutEffect } from "react"
 import { useForm } from "react-hook-form"
 import { useHotkeys } from "react-hotkeys-hook"
+import { useTranslation } from "react-i18next"
 import { z } from "zod"
 
 import { getSidebarActiveView } from "~/atoms/sidebar"
@@ -18,6 +19,7 @@ import { cn } from "~/lib/utils"
 import { FeedForm } from "../discover/feed-form"
 
 const CmdNPanel = () => {
+  const { t } = useTranslation(["app", "common"])
   const form = useForm({
     resolver: zodResolver(
       z.object({
@@ -93,6 +95,7 @@ const CmdNPanel = () => {
         <button
           disabled={form.formState.isSubmitting || !form.formState.isValid}
           type="submit"
+          aria-label={t("words.add")}
           className="center absolute inset-y-0 right-3 pl-2 text-accent duration-200 hover:text-accent/90 disabled:grayscale"
         >
           <i className="i-mgc-arrow-right-circle-cute-fi size-6" />
