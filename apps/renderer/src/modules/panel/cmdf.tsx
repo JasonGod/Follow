@@ -6,6 +6,7 @@ import { useSubscribeElectronEvent } from "@follow/shared/event"
 import { AnimatePresence, m } from "framer-motion"
 import type { FC } from "react"
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useDebounceCallback, useEventCallback } from "usehooks-ts"
 
 import { softSpringPreset } from "~/components/ui/constants/spring"
@@ -17,6 +18,7 @@ import { observeResize } from "~/lib/observe-resize"
 const CmdFImpl: FC<{
   onClose: () => void
 }> = ({ onClose }) => {
+  const { t } = useTranslation(["app", "common"])
   const [value, setValue] = useState("")
 
   const currentValue = useRefValue(value)
@@ -124,6 +126,7 @@ const CmdFImpl: FC<{
           {...inputProps}
           ref={inputRef}
           name="search"
+          aria-label={t("words.search")}
           className="absolute inset-0 size-full appearance-none bg-transparent font-[system-ui] text-[15px] text-transparent caret-accent selection:text-transparent"
           style={{
             visibility: isSearching ? "hidden" : "visible",
@@ -149,6 +152,7 @@ const CmdFImpl: FC<{
       <div className="center gap-1 [&>*]:opacity-80">
         <button
           type="button"
+          aria-label={t("keys.entries.previous", { ns: "shortcuts" })}
           className="center hover:opacity-90"
           onClick={() => {
             nativeSearchImpl(value, "backward")
@@ -158,6 +162,7 @@ const CmdFImpl: FC<{
         </button>
         <button
           type="button"
+          aria-label={t("keys.entries.next", { ns: "shortcuts" })}
           className="center hover:opacity-90"
           onClick={() => {
             nativeSearchImpl(value, "forward")
@@ -167,6 +172,7 @@ const CmdFImpl: FC<{
         </button>
         <button
           type="button"
+          aria-label={t("close", { ns: "common" })}
           className="center hover:opacity-90"
           onClick={() => {
             setValue("")
