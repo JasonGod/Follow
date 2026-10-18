@@ -349,6 +349,7 @@ const VolumeControl = () => {
   return (
     <ActionIcon
       label={<VolumeSlider onVolumeChange={controls.volume} volume={volume} />}
+      aria-label={muted ? t("player.unmute") : t("player.mute")}
       onClick={() => {
         if (muted) {
           controls.unmute()
@@ -427,6 +428,7 @@ const ActionIcon = ({
   labelDelayDuration = 700,
   children,
   shortcut,
+  "aria-label": ariaLabel,
 }: {
   className?: string
   onClick?: () => void
@@ -434,6 +436,7 @@ const ActionIcon = ({
   labelDelayDuration?: number
   children?: React.ReactNode
   shortcut?: string
+  "aria-label"?: string
 }) => {
   useHotkeys(
     shortcut || "",
@@ -450,6 +453,7 @@ const ActionIcon = ({
       <TooltipTrigger asChild>
         <button
           type="button"
+          aria-label={ariaLabel ?? (typeof label === "string" ? label : undefined)}
           className="center relative z-[1] size-6 rounded-md hover:bg-theme-button-hover"
           onClick={onClick}
         >
