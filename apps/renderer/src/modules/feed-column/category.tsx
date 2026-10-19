@@ -203,10 +203,11 @@ function FeedCategoryImpl({
                 <LoadingCircle size="small" className="mr-2 size-[16px]" />
               ) : isCategoryEditing ? (
                 <MotionButtonBase
+                  aria-label={t("cancel", { ns: "common" })}
                   onClick={() => {
                     setIsCategoryEditing(false)
                   }}
-                  className="center -ml-1 flex size-5 shrink-0 rounded-lg hover:bg-theme-button-hover"
+                  className="center -ml-1 flex size-5 shrink-0 rounded-lg hover:bg-theme-button-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   <i className="i-mgc-close-cute-re text-red-500 dark:text-red-400" />
                 </MotionButtonBase>
@@ -277,6 +278,7 @@ const RenameCategoryForm: FC<{
   currentCategory: string
   onFinished: () => void
 }> = ({ currentCategory, onFinished }) => {
+  const { t } = useTranslation()
   const navigate = useNavigateEntry()
   const renameMutation = useMutation({
     mutationFn: async ({
@@ -340,7 +342,8 @@ const RenameCategoryForm: FC<{
       />
       <MotionButtonBase
         type="submit"
-        className="center -mr-1 flex size-5 shrink-0 rounded-lg text-green-600 hover:bg-theme-button-hover dark:text-green-400"
+        aria-label={t("words.confirm")}
+        className="center -mr-1 flex size-5 shrink-0 rounded-lg text-green-600 hover:bg-theme-button-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-green-400"
       >
         <i className="i-mgc-check-filled size-3" />
       </MotionButtonBase>
