@@ -188,6 +188,8 @@ function FeedCategoryImpl({
           <div className="flex w-full min-w-0 items-center">
             <button
               type="button"
+              aria-label={folderName || "Category"}
+              aria-expanded={open}
               onClick={(e) => {
                 if (isCategoryEditing) return
                 e.stopPropagation()
@@ -206,6 +208,7 @@ function FeedCategoryImpl({
                   onClick={() => {
                     setIsCategoryEditing(false)
                   }}
+                  aria-label={t("cancel", { ns: "common" })}
                   className="center -ml-1 flex size-5 shrink-0 rounded-lg hover:bg-theme-button-hover"
                 >
                   <i className="i-mgc-close-cute-re text-red-500 dark:text-red-400" />
@@ -277,6 +280,7 @@ const RenameCategoryForm: FC<{
   currentCategory: string
   onFinished: () => void
 }> = ({ currentCategory, onFinished }) => {
+  const { t } = useTranslation()
   const navigate = useNavigateEntry()
   const renameMutation = useMutation({
     mutationFn: async ({
@@ -335,11 +339,13 @@ const RenameCategoryForm: FC<{
         ref={inputRef}
         name="category"
         autoFocus
+        aria-label={t("sidebar.feed_column.context_menu.rename_category")}
         defaultValue={currentCategory}
         className="w-full appearance-none bg-transparent caret-accent"
       />
       <MotionButtonBase
         type="submit"
+        aria-label={t("words.submit", { ns: "common" })}
         className="center -mr-1 flex size-5 shrink-0 rounded-lg text-green-600 hover:bg-theme-button-hover dark:text-green-400"
       >
         <i className="i-mgc-check-filled size-3" />
