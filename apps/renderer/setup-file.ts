@@ -19,3 +19,8 @@ if (!globalThis.navigator) {
   }
 }
 enableMapSet()
+
+if (!globalThis.tw) {
+  globalThis.tw = (strings: TemplateStringsArray, ...values: any[]) =>
+    String.raw({ raw: strings }, ...values)
+}
