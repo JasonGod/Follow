@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useLayoutEffect } from "react"
 import { useForm } from "react-hook-form"
 import { useHotkeys } from "react-hotkeys-hook"
+import { useTranslation } from "react-i18next"
 import { z } from "zod"
 
 import { getSidebarActiveView } from "~/atoms/sidebar"
@@ -18,6 +19,7 @@ import { cn } from "~/lib/utils"
 import { FeedForm } from "../discover/feed-form"
 
 const CmdNPanel = () => {
+  const { t } = useTranslation()
   const form = useForm({
     resolver: zodResolver(
       z.object({
@@ -80,6 +82,7 @@ const CmdNPanel = () => {
               <FormControl>
                 <input
                   {...field}
+                  aria-label={t("words.add", { ns: "app" })}
                   placeholder="Quick follow a feed, typing feed url here..."
                   className="w-full shrink-0 border-b border-zinc-200 bg-transparent p-4 px-5 text-lg leading-4 dark:border-neutral-700"
                 />
@@ -93,7 +96,8 @@ const CmdNPanel = () => {
         <button
           disabled={form.formState.isSubmitting || !form.formState.isValid}
           type="submit"
-          className="center absolute inset-y-0 right-3 pl-2 text-accent duration-200 hover:text-accent/90 disabled:grayscale"
+          aria-label={t("words.add", { ns: "app" })}
+          className="center absolute inset-y-0 right-3 pl-2 text-accent duration-200 hover:text-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent disabled:grayscale"
         >
           <i className="i-mgc-arrow-right-circle-cute-fi size-6" />
         </button>
