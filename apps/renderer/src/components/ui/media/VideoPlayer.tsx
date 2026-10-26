@@ -185,10 +185,12 @@ const BizControlOutsideMedia = () => {
 }
 
 const FloatMutedButton = () => {
+  const { t } = useTranslation()
   const ctx = useContext(VideoPlayerContext)
   const isMuted = ctx.state.muted
   return (
     <MotionButtonBase
+      aria-label={isMuted ? t("player.unmute") : t("player.mute")}
       className="center absolute right-4 top-4 z-10 size-7 rounded-full bg-black/50 opacity-0 duration-200 group-hover:opacity-100"
       onClick={(e) => {
         e.stopPropagation()
@@ -348,6 +350,7 @@ const VolumeControl = () => {
   if (!hasAudio) return null
   return (
     <ActionIcon
+      aria-label={muted ? t("player.unmute") : t("player.mute")}
       label={<VolumeSlider onVolumeChange={controls.volume} volume={volume} />}
       onClick={() => {
         if (muted) {
@@ -424,6 +427,7 @@ const ActionIcon = ({
   className,
   onClick,
   label,
+  "aria-label": ariaLabel,
   labelDelayDuration = 700,
   children,
   shortcut,
@@ -431,6 +435,7 @@ const ActionIcon = ({
   className?: string
   onClick?: () => void
   label: React.ReactNode
+  "aria-label"?: string
   labelDelayDuration?: number
   children?: React.ReactNode
   shortcut?: string
@@ -450,6 +455,7 @@ const ActionIcon = ({
       <TooltipTrigger asChild>
         <button
           type="button"
+          aria-label={ariaLabel || (typeof label === "string" ? label : undefined)}
           className="center relative z-[1] size-6 rounded-md hover:bg-theme-button-hover"
           onClick={onClick}
         >
