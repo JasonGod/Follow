@@ -194,6 +194,8 @@ function FeedCategoryImpl({
                 setOpen(!open)
               }}
               data-state={open ? "open" : "close"}
+              aria-expanded={open}
+              aria-label={folderName}
               className={cn(
                 "flex h-8 items-center [&_.i-mgc-right-cute-fi]:data-[state=open]:rotate-90",
               )}
@@ -206,6 +208,7 @@ function FeedCategoryImpl({
                   onClick={() => {
                     setIsCategoryEditing(false)
                   }}
+                  aria-label={t("cancel", { ns: "common" })}
                   className="center -ml-1 flex size-5 shrink-0 rounded-lg hover:bg-theme-button-hover"
                 >
                   <i className="i-mgc-close-cute-re text-red-500 dark:text-red-400" />
@@ -277,6 +280,7 @@ const RenameCategoryForm: FC<{
   currentCategory: string
   onFinished: () => void
 }> = ({ currentCategory, onFinished }) => {
+  const { t } = useTranslation()
   const navigate = useNavigateEntry()
   const renameMutation = useMutation({
     mutationFn: async ({
@@ -340,6 +344,7 @@ const RenameCategoryForm: FC<{
       />
       <MotionButtonBase
         type="submit"
+        aria-label={t("confirm", { ns: "common" })}
         className="center -mr-1 flex size-5 shrink-0 rounded-lg text-green-600 hover:bg-theme-button-hover dark:text-green-400"
       >
         <i className="i-mgc-check-filled size-3" />
