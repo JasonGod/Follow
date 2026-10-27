@@ -44,6 +44,7 @@ export const TocItem: FC<TocItemProps> = memo((props) => {
         [anchorId, onClick, index, $heading],
       )}
       title={title}
+      aria-label={title}
     >
       <span
         style={{
