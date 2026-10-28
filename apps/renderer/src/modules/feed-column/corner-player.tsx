@@ -124,6 +124,7 @@ const CornerPlayerImpl = () => {
               type="button"
               className="center size-10 rounded-full bg-theme-background opacity-95 hover:bg-accent hover:text-white hover:opacity-100"
               onClick={handleClickPlay}
+              aria-label={playerValue.status === "playing" ? t("player.pause") : t("player.play")}
             >
               <i
                 className={cn("size-6", {
@@ -183,7 +184,11 @@ const CornerPlayerImpl = () => {
         </div>
         {/* audio control */}
         <div className="flex items-center">
-          <ActionIcon label={<PlaybackRateSelector />} labelDelayDuration={0}>
+          <ActionIcon
+            label={<PlaybackRateSelector />}
+            labelDelayDuration={0}
+            aria-label={t("player.playback_rate")}
+          >
             <PlaybackRateButton />
           </ActionIcon>
           <ActionIcon
@@ -193,6 +198,7 @@ const CornerPlayerImpl = () => {
             onClick={() => AudioPlayer.toggleMute()}
             label={<CornerPlayerVolumeSlider />}
             labelDelayDuration={0}
+            aria-label={playerValue.isMute ? t("player.unmute") : t("player.mute")}
           />
           <ActionIcon
             className="i-mgc-back-2-cute-re"
@@ -277,6 +283,7 @@ const ActionIcon = ({
   labelDelayDuration = 700,
   tooltipAlign,
   children,
+  "aria-label": ariaLabel,
 }: {
   className?: string
   onClick?: () => void
@@ -284,6 +291,7 @@ const ActionIcon = ({
   labelDelayDuration?: number
   tooltipAlign?: TooltipContentProps["align"]
   children?: React.ReactNode
+  "aria-label"?: string
 }) => (
   <Tooltip delayDuration={labelDelayDuration}>
     <TooltipTrigger
@@ -291,7 +299,12 @@ const ActionIcon = ({
       onClick={onClick}
       asChild
     >
-      <button type="button">{children || <i className={className} />}</button>
+      <button
+        type="button"
+        aria-label={ariaLabel || (typeof label === "string" ? label : undefined)}
+      >
+        {children || <i className={className} />}
+      </button>
     </TooltipTrigger>
     <TooltipContent align={tooltipAlign}>{label}</TooltipContent>
   </Tooltip>
