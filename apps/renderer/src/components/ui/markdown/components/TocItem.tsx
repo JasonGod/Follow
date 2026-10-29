@@ -33,8 +33,9 @@ export const TocItem: FC<TocItemProps> = memo((props) => {
       type="button"
       ref={$ref}
       data-index={index}
-      className="block cursor-pointer"
+      className="block cursor-pointer rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1"
       data-depth={depth}
+      aria-label={title}
       onClick={useCallback(
         (e: MouseEvent) => {
           e.preventDefault()
