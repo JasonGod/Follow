@@ -242,10 +242,11 @@ export const Toc: Component = ({ className }) => {
                       >
                         <button
                           className={cn(
-                            "group flex w-full cursor-pointer justify-between py-1",
+                            "group flex w-full cursor-pointer justify-between rounded px-1 py-1 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
                             index === currentScrollRange[0] ? "text-accent" : "",
                           )}
                           type="button"
+                          aria-label={heading.title}
                           onClick={() => {
                             handleScrollTo(index, heading.$heading, heading.anchorId)
                           }}
