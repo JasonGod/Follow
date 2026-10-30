@@ -59,6 +59,7 @@ export function Header() {
           <button
             className="cursor-pointer"
             type="button"
+            aria-label={t("user_button.profile", { ns: "app" })}
             onClick={() => {
               present(whoami()?.id)
             }}
