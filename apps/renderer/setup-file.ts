@@ -18,4 +18,10 @@ if (!globalThis.navigator) {
     userAgent: "node",
   }
 }
+
+if (!globalThis.tw) {
+  globalThis.tw = (strings: TemplateStringsArray, ...values: any[]) =>
+    strings.reduce((result, str, i) => result + str + (values[i] || ""), "")
+}
+
 enableMapSet()
